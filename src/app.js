@@ -56,13 +56,13 @@ app.post("/tweets", (req, res) => {
     const { username, tweet } = req.body;
     const existUser = users.find(user => user.username == username);
 
-    const head = req.headers
-    const existUserHeaders = users.find(user => user.username == head.username)
+    const head = req.headers.user
+    const existUserHeaders = users.find(user => user.username == head)
 
-    if(head.username){
+    if(head){
         if(!existUserHeaders)res.status(401).send("user not found");
         tweets.push({
-            username: head.username,
+            username: head,
             tweet: tweet
         });
     
